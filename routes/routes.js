@@ -23,6 +23,19 @@ router.post('/coach', async (req, res) => {
     }
 })
 
+
+//Get by ID Method
+router.get('/coach/:id', async (req, res) => {
+    try{
+        const data = await CoachModel.findById(req.params.id);
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
+
+
 //Get all Method
 router.get('/coach', async (req, res) => {
     try{
@@ -35,4 +48,4 @@ router.get('/coach', async (req, res) => {
 })
 
 
-
+//TODO PUT METHOD
