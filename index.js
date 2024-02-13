@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const mongoString = process.env.DATABASE_URL;
 const routes = require('./routes/routes');
+const cors = require('cors');
 
 
 mongoose.connect(mongoString);
@@ -18,6 +19,8 @@ database.once('connected', () => {
 })
 const app = express();
 
+// Enable CORS for all origins
+app.use(cors());
 app.use(express.json());
 app.use('/api', routes)
 

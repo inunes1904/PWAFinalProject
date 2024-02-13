@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router()
-const CoachModel = require('../models/model');
+const CoachModel = require('../models/Coach');
+const RequestModel = require('../models/request');
 
 module.exports = router;
 
@@ -22,7 +23,6 @@ router.post('/coach', async (req, res) => {
         res.status(400).json({message: error.message})
     }
 })
-
 
 //Get by ID Method
 router.get('/coach/:id', async (req, res) => {
@@ -48,4 +48,34 @@ router.get('/coach', async (req, res) => {
 })
 
 
-//TODO PUT METHOD
+//Request Routes
+
+// Add a new request to a specific coach
+router.post('/request/:id', async (req, res) => {
+    const data = new RequestModel({
+        coachId: req.params.id,
+        userEmail: req.body.userEmail,
+        message: req.body.message,
+    })
+
+    try {
+        const dataToSave = await data.save();
+        res.status(200).json(dataToSave)
+    }
+    catch (error) {
+        res.status(400).json({message: error.message})
+    }
+})
+
+//Get all Requests
+router.get('/request', async (req, res) => {
+    try{
+        const data = await RequestModel.find();
+        res.json(data)
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
+})
+
+
