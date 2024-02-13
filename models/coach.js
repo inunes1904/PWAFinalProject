@@ -23,4 +23,4 @@ const dataSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Coach', dataSchema)
+exports.CoachModel = mongoose.model('Coach', dataSchema)
