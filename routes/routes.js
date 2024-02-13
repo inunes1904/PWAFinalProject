@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router()
-const CoachModel = require('../models/Coach');
-const RequestModel = require('../models/request');
+const CoachModel = require('../models/Coach.js');
+const RequestModel = require('../models/request.js');
 
 module.exports = router;
 
