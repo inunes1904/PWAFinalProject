@@ -35,6 +35,20 @@ router.get('/coach/:id', async (req, res) => {
     }
 })
 
+//Delete by ID Method
+router.delete('/coach/:id', async (req, res) => {
+    try {
+        const deletedCoach = await CoachModel.findByIdAndDelete(req.params.id);
+        if (deletedCoach) {
+            res.json({ message: 'Coach deleted successfully' });
+        } else {
+            res.status(404).json({ message: 'Coach not found' });
+        }
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+
 
 //Get all Method
 router.get('/coach', async (req, res) => {
