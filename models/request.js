@@ -16,4 +16,4 @@ const dataSchema = new mongoose.Schema({
 
 })
 
-exports.RequestModel = mongoose.model('Request', dataSchema)
+module.exports = mongoose.model('Request', dataSchema)
